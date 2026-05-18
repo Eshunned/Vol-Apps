@@ -157,6 +157,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Hide cover content when the card is opened/hovered to avoid text and HUD elements bleeding through the flip */
+.card:hover .crt-screen,
+.card.open .crt-screen {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Crying Cat Image — keep it natural and memey, just slightly dimmed for text contrast */
@@ -351,13 +359,6 @@ body {
   transition: all 0.3s ease;
 }
 
-.card:hover .interactive-prompt {
-  background: rgba(0, 255, 102, 0.18);
-  border-color: var(--accent-green);
-  box-shadow: 0 0 12px rgba(0, 255, 102, 0.35);
-  text-shadow: 0 0 4px var(--accent-green);
-}
-
 .interactive-prompt .prompt-text {
   font-weight: 700;
   letter-spacing: 1.2px;
@@ -441,7 +442,7 @@ body {
 
 .terminal-title {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 9.5px;
+  font-size: 12px;
   color: var(--text-muted);
   margin-left: 10px;
 }
@@ -471,6 +472,7 @@ body {
 .terminal-body .label {
   color: var(--text-muted);
   margin-right: 4px;
+  font-size: 15px;
 }
 
 .terminal-body .value {
@@ -482,6 +484,7 @@ body {
   color: var(--accent-red);
   text-shadow: 0 0 5px rgba(255, 59, 48, 0.45);
   animation: glow-reject 1.5s infinite alternate;
+  font-size: 20px;
 }
 
 .val-warning {
@@ -510,6 +513,7 @@ body {
   color: rgba(226, 232, 240, 0.85);
   opacity: 0.9;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
+  font-size: 15px;
 }
 
 .letter-content p:last-of-type::after {
@@ -537,14 +541,14 @@ body {
 
 .terminal-footer {
   margin-top: auto;
-  font-size: 10.5px;
+  font-size: 15px;
 }
 
 .terminal-datetime {
   display: flex;
   justify-content: space-between;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   padding: 3px 0;
   margin-bottom: 6px;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
@@ -677,6 +681,11 @@ body {
   transform: translateY(0);
 }
 
+/* Shift the open card slightly to the right to center both pages of the book */
+.card.open {
+  transform: translateX(85px);
+}
+
 ::selection {
   background: rgba(0, 229, 255, 0.2);
   color: #fff;
@@ -684,18 +693,24 @@ body {
 
 @media (max-width: 480px) {
   .card-container {
-    transform: scale(0.88);
+    transform: scale(0.78);
   }
 
   .footer {
-    margin-top: 10px;
-    font-size: 9px;
+    margin-top: 15px;
+    font-size: 9.5px;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   .card-container {
-    transform: scale(0.78);
+    transform: scale(0.70);
+  }
+}
+
+@media (max-width: 320px) {
+  .card-container {
+    transform: scale(0.60);
   }
 }
 
