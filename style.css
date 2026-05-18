@@ -729,3 +729,42 @@ body {
 .card:hover .uhoh-img {
   opacity: 1;
 }
+
+/* Mobile Responsive Scaling & Visual Centering */
+@media screen and (max-width: 480px) {
+  body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* 1. Base closed card state */
+  .card {
+    transform: scale(0.6) !important;
+    transform-origin: center center !important;
+    left: auto !important;
+    top: auto !important;
+    position: relative !important;
+    margin: 0 auto !important;
+  }
+
+  /* 2. Open card state: Keeps the 60% scale but nudges it right */
+  .card.open,
+  .card[data-state="open"] {
+    /* Adjust this class/attribute to match your script.js toggle */
+    /* scale(0.6) shrinks it, translateX(5%) shifts it slightly right to fix the layout gap */
+    transform: scale(0.6) translateX(35%) !important;
+
+    transform-origin: center center !important;
+    left: auto !important;
+    top: auto !important;
+    position: relative !important;
+    margin: 0 auto !important;
+  }
+}
